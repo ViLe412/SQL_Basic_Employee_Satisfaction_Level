@@ -1,0 +1,11 @@
+Department,Number_of_Employees,Average_Satisfaction_Level,LAST_Average_Satisfaction_Level,Average_Monthly_Hours,Average_Years_Spend
+accounting,767,0.58,0.72,201.16,3.52
+hr,739,0.6,0.71,198.68,3.36
+sales,4140,0.61,0.71,200.91,3.53
+technical,2720,0.61,0.72,202.50,3.41
+support,2229,0.62,0.72,200.76,3.39
+management,630,0.62,0.72,201.25,4.30
+IT,1227,0.62,0.72,202.22,3.47
+product_mng,902,0.62,0.71,199.97,3.48
+marketing,858,0.62,0.72,199.39,3.57
+RandD,787,0.62,0.71,200.80,3.37
