@@ -1,0 +1,61 @@
+-- show full table
+SELECT * FROM EmSat.em;
+
+-- Q1-1: sort employees as their salary in each dept
+SELECT dept AS Department, 
+SUM(CASE WHEN salary = 'low' THEN 1 ELSE 0 END) AS 'low',
+SUM(CASE WHEN salary = 'medium' THEN 1 ELSE 0 END) AS 'medium',
+SUM(CASE WHEN salary = 'high' THEN 1 ELSE 0 END) AS 'high'
+FROM EmSat.em
+GROUP BY dept;
+
+-- Q1-2: sort employees as their salary, with avg satisfaction (current and last) in each dept
+
+-- test if Q1-2 is correct
+SELECT AVG(satisfaction_level) 
+FROM EmSat.em
+WHERE salary = 'low' AND dept = 'sales';
+
+-- Q2: count number of employees, avg satisfaction level, monthly hours, and time spend in each department
+SELECT DISTINCT dept AS Department, COUNT(*) AS Number_of_Employees, ROUND(AVG(satisfaction_level),2) AS Average_Satisfaction_Level,
+ROUND(AVG(last_evaluation),2) AS LAST_Average_Satisfaction_Level,
+ROUND(AVG(average_montly_hours), 2) AS Average_Monthly_Hours, ROUND(AVG(time_spend_company), 2) AS Average_Years_Spend
+FROM EmSat.em
+GROUP BY (dept)
+ORDER BY Average_Satisfaction_Level ASC;
+
+-- Q3: count employees of each type of salary
+SELECT salary AS Salary, COUNT(*) AS Number_of_Employees, ROUND(AVG(satisfaction_level),2) AS Average_Satisfaction_Level, 
+ROUND(AVG(last_evaluation),2) AS LAST_Average_Satisfaction_Level
+FROM EmSat.em
+GROUP BY(salary)
+ORDER BY Salary ASC;
+
+-- Q4: overal average satisfaction level of employees (present and last)
+SELECT ROUND(AVG(satisfaction_level),2) AS Current_Avg_Satisfaction_Level, ROUND(AVG(last_evaluation),2) AS LAST_Avg_Satisfaction_Level FROM EmSat.em;
+
+-- Q7: employees, years working and their sat level to see the changes
+SELECT `Emp ID` AS Emp_ID, satisfaction_level AS Current_Avg_Level,last_evaluation AS LAST_Avg_Level, time_spend_company AS Avg_Time
+FROM EmSat.em
+ORDER BY satisfaction_level;
+
+-- Q8: Total number of Employees
+SELECT COUNT(`Emp ID`) FROM EmSat.em;
+
+-- Q9: Total deparments
+SELECT COUNT(DISTINCT dept) AS 'Number of Departments' FROM EmSat.em;
+
+-- Q10: Average sat level from each dept
+SELECT dept AS Department, ROUND(AVG(satisfaction_level), 4) AS Sat_Level
+FROM EmSat.em
+GROUP BY dept;
+
+-- Q11: average satisfaction level divided by years spend with comany
+select distinct time_spend_company as Years, round(avg(last_evaluation), 4) as Last_Evaluation, round(avg(satisfaction_level),4) as Current_Eva
+from EmSat.em
+group by time_spend_company
+order by time_spend_company;
+
+-- Q12: Avg sat level of all em
+select round(avg(satisfaction_level),4) as Average_Satisfaction_Level
+from EmSat.em;
